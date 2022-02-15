@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài 1</title>
+  </head>
+  <body>
+    <script>
+      const sinhvien = {
+        id: 1,
+        fullname: "Đào Đức Minh Khôi",
+        email: "khoiddmps18239@fpt.edu.vn",
+        avatar:
+          "https://scontent.fsgn2-4.fna.fbcdn.net/v/t1.6435-1/p160x160/120946730_352619426059311_851730369256431030_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=7206a8&_nc_ohc=AbhNaK7eOVQAX_ifjoU&_nc_ht=scontent.fsgn2-4.fna&oh=00_AT_b5JEuH76sVuXOouBVmVd0hP7uJNMv1nawGqQyDZBnPQ&oe=6205FD40",
+        address: "Ho Chi Minh City",
+        study_major: "Information Technology",
+        avgScore: 4.5,
+        getAvgScore: function () {
+          console.log("Average Score is ", this.avgScore);
+        },
+        setAvgScore: function (point) {
+            this.avgScore = point;
+        },
+        changeAddress: function(address) {
+            this.address = address
+        }
+      };
+
+      sinhvien.changeAddress("Ha Noi City")
+      sinhvien.setAvgScore(9);
+      sinhvien.getAvgScore();
+      console.log(sinhvien);
+    </script>
+  </body>
+</html>

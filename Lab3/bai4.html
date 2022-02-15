@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài 4</title>
+  </head>
+
+  <body>
+    <h1>Thông tin Person</h1>
+    <form action="" style="display: flex; flex-direction: column; width: 500px">
+      <label for="">Tên 1:</label>
+      <input type="text" class="first" />
+      <label for="">Tuổi 1:</label>
+      <input type="text" class="first" />
+      <label for="">Địa chỉ 1:</label>
+      <input type="text" class="first" />
+      <label for="">Tên 2:</label>
+      <input type="text" class="second" />
+      <label for="">Tuổi 2:</label>
+      <input type="text" class="second" />
+      <label for="">Địa chỉ 2:</label>
+      <input type="text" class="second" />
+      <button style="padding: 4px 8px; margin-top: 20px">Submit</button>
+    </form>
+    <div class="show"></div>
+
+    <script>
+      const firstPersonElement = document.querySelectorAll(".first");
+      const secondPersonElement = document.querySelectorAll(".second");
+      const elShow = document.querySelector(".show");
+      const elForm = document.querySelector("form");
+
+      const Person = {
+        name: "Đào Đức Minh Khôi",
+        age: 19,
+        address: "Hồ Chí Minh",
+        showProfile: function () {
+          const elRender = document.createElement("div");
+          elRender.innerHTML = `<hr><ul>
+                    <li>Name: ${this.name}</li>
+                    <li>Age: ${this.age}</li>
+                    <li>Address: ${this.address}</li>
+                </ul> <hr>`;
+          elShow.appendChild(elRender);
+        },
+      };
+
+      function checkForm() {
+        let result = true;
+        firstPersonElement.forEach((item) => {
+          if (item.value == "") {
+            result = false;
+          }
+        });
+        secondPersonElement.forEach((item) => {
+          if (item.value == "") {
+            result = false;
+          }
+        });
+        return result;
+      }
+
+      elForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (checkForm()) {
+          let fName = firstPersonElement[0].value;
+          let fAge = firstPersonElement[1].value;
+          let fAddress = firstPersonElement[2].value;
+          let first = {
+            __proto__: Person,
+          };
+
+          first.name = fName;
+          first.age = fAge;
+          first.address = fAddress;
+
+          let sName = secondPersonElement[0].value;
+          let sAge = secondPersonElement[1].value;
+          let sAddress = secondPersonElement[2].value;
+          let second = {
+            __proto__: Person,
+          };
+
+          second.name = sName;
+          second.age = sAge;
+          second.address = sAddress;
+
+          first.showProfile();
+          second.showProfile();
+
+          firstPersonElement.forEach((item) => {
+            item.value = "";
+          });
+          secondPersonElement.forEach((item) => {
+            item.value = "";
+          });
+        } else {
+          alert("Yêu cầu nhập đầy đủ thông tin");
+        }
+      });
+    </script>
+  </body>
+</html>

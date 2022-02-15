@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài 2</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <div style="width: 80px; height: 80px; background-color: red" id="box"></div>
+    <button id="changeColor">Change color</button>
+    <script>
+      const randomColor = () => {
+        return "#" + Math.floor(Math.random() * 16777215).toString(16);
+      };
+
+      const handleRandomColor = (time, funcRandomColor) => {
+        setTimeout(() => {
+          $("#box")[0].style.backgroundColor = funcRandomColor();
+        }, time);
+      };
+
+      $("#changeColor")[0].onclick = (e) => {
+        handleRandomColor(1000, randomColor);
+      };
+    </script>
+  </body>
+</html>

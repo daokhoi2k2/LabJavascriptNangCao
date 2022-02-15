@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài 3</title>
+  </head>
+
+  <body>
+    <p class="text1"></p>
+    <p class="text2"></p>
+    <script>
+      function student(name, age, address, phone, birthday, subjects) {
+        this.name = name;
+        this.age = age;
+        this.address = address;
+        this.phone = phone;
+        this.birthday = birthday;
+        this.subjects = subjects;
+      }
+
+      function studentPoly(name, age, address, phone, birthday, subjects) {
+        
+        student.call(this, name, age, address, phone, birthday, subjects);
+        this.changeAddress = function (address) {
+          this.address = address;
+        };
+
+        this.setAvgScore = function (age) {
+          this.age = age;
+          return this.age;
+        };
+
+        this.getAvgScore = function () {
+          let sum = 0;
+          this.subjects.forEach(function (item) {
+            sum = sum + item.point;
+          });
+          return sum / this.subjects.length;
+        };
+      }
+
+      const st = new studentPoly(
+        "Đào Đức Minh Khôi",
+        19,
+        "Hồ Chí Minh",
+        "0123456789",
+        "30/2/2003",
+        [
+          { name: "Javascript", point: 6 },
+          { name: "PHP", point: 5 },
+          { name: "Ruby", point: 9 },
+        ]
+      );
+
+      st.changeAddress("Hà Nội");
+      var text1 = (document.querySelector(".text1").innerHTML =
+        "GetAvgScore: " + st.getAvgScore());
+      var text2 = (document.querySelector(".text2").innerHTML =
+        "SetAvgScore: " + st.setAvgScore(10));
+    </script>
+  </body>
+</html>

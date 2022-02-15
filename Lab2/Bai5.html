@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài 5</title>
+  </head>
+  <body>
+    <form name="form-2">
+      <p>
+        <label for="email">Email</label>
+        <input type="text" name="string" id="email" />
+      </p>
+      <p>
+        <input type="button" value="Check" onclick="{handleCheck()}" />
+      </p>
+      <h1 id="result2"></h1>
+    </form>
+    <script>
+      const resultElement = document.querySelector("#result");
+      const formElement2 = document.forms["form-2"];
+      const emailInput = formElement2[0];
+      const resultElement2 = document.querySelector("#result2");
+
+      const handleCheck = () => {
+        const result = emailInput.value.match(/^[A-z0-9]{5,32}\S+@\S+[A-z0-9](\.[a-zA-Z]{2,})|(\.[A-z0-9]{2,4}){1,2}$/);
+        resultElement2.innerHTML = result ? "true": "false";
+      };
+    </script>
+  </body>
+</html>

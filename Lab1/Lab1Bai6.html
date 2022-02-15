@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
+    <title>Lab 1 - Bài 6</title>
+    <style>
+        .user_item {
+            color: green;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="form">
+        <div>
+            <label>Date</label>
+            <input type="text" id="cvDate">
+        </div>
+        <div>
+            <label>Month</label>
+            <input type="text" id="cvMonth">
+        </div>
+        <div>
+            <label>Year</label>
+            <input type="text" id="cvYear">
+        </div>
+        <div>
+            <button type="button" id="addAction">Convert</button>
+        </div>
+        <ul id="target">
+
+        </ul>
+    </div>
+    <script>
+        var target = document.querySelector("#target");
+        var buttonEl = document.querySelector("#addAction");
+        buttonEl.onclick = function (e) {
+            var value = {
+                date: document.getElementById('cvDate').value,
+                month: document.getElementById('cvMonth').value,
+                year: document.getElementById('cvYear').value
+            };
+            var date = moment(`${value.year}/${value.month}/${value.date}`, "YYYY/MM/DD");
+            target.innerHTML = date.format("dddd");
+        };
+    </script>
+</body>
+
+</html>

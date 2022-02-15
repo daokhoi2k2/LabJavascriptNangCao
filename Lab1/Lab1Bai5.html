@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 1 - Bài 5</title>
+    <style>
+        .user_item {
+            color: green;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form">
+        <div>
+            <label>Date</label>
+            <input type="text" id="cvDate">
+        </div>
+        <div>
+            <label>Month</label>
+            <input type="text" id="cvMonth">
+        </div>
+        <div>
+            <label>Year</label>
+            <input type="text" id="cvYear">
+        </div>
+        <div>
+            <button type="button" id="addAction">Convert</button>
+        </div>
+        <ul id="target">
+
+        </ul>
+    </div>
+    <script>
+        var target = document.querySelector("#target");
+        var buttonEl = document.querySelector("#addAction");
+        buttonEl.onclick = function (e) {
+            var value = {
+                date: document.getElementById('cvDate').value,
+                month: document.getElementById('cvMonth').value,
+                year: document.getElementById('cvYear').value
+            };
+            var date = new Date(`${value.year}-${value.month}-${value.date}`);
+
+            // Library tự viết
+            Date.prototype.format = function (callback, character, formatStyle) {
+                var monthList = [
+                    "January",
+                    "February",
+                    "March",
+                    "April",
+                    "May",
+                    "June",
+                    "July",
+                    "August",
+                    "September",
+                    "October",
+                    "November",
+                    "December",
+                ];
+                // Định dạng DD
+                if (this.getDate() < 10) {
+                    var renderDate = "0" + date.getDate();
+                }
+                // Định dạng MM
+                if (formatStyle == "l") {
+                    var renderMonth = monthList[this.getMonth()]
+                }else if (formatStyle == "ls") {
+                    var renderMonth = monthList[this.getMonth()].slice(0,3);
+                }
+                else {
+                    if (this.getMonth() < 9) {
+                        var renderMonth = "0" + (date.getMonth() + 1);
+                    }else{
+                        var renderMonth = date.getMonth() + 1;
+                    }
+                }
+                var a = callback(this.getFullYear(), renderMonth, renderDate);
+                return (a.split("/").join(character)) // thay đổi ký tự giữa ngày tháng năm
+            }
+            var renderAll = [
+                date.format(function (YYYY, MM, DD) {
+                    return `${YYYY}/${DD}/${MM}`;
+                }, "-", "s"),
+                date.format(function (YYYY, MM, DD) {
+                    return `${MM}/${DD}/${YYYY}`;
+                }, "/", "s"),
+                date.format(function (YYYY, MM, DD) {
+                    return `${DD}/${MM}/${YYYY}`;
+                }, ".", "s"),
+                date.format(function (YYYY, MM, DD) {
+                    return `${DD}/ ${MM} ${YYYY}`;
+                }, ",", "ls"),
+                date.format(function (YYYY, MM, DD) {
+                    return `${DD}/ ${MM} ${YYYY}`;
+                }, ",", "l"),
+            ];
+            var result = renderAll.map(function(date) {
+                return `<p>${date}</p>`
+            })
+            target.innerHTML = result.join("");
+        };
+    </script>
+</body>
+
+</html>

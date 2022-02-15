@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 1 - Bài 4</title>
+    <style>
+        .user_item {
+            color: green;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="form">
+        <div>
+            <label>ID</label>
+            <input type="number" id="addUserID">
+        </div>
+        <div>
+            <label>Name</label>
+            <input type="text" id="addUserText">
+        </div>
+        <div>
+            <label>Gender</label>
+            <select id="addUserGender">
+                <option value="1">male</option>
+                <option value="2">male</option>
+            </select>
+        </div>
+        <div>
+            <button type="button" id="addAction">Add</button>
+        </div>
+        <ul id="target">
+
+        </ul>
+    </div>
+    <script>
+        var users = [
+            { id: 1, name: "James Smith", gender: 1 },
+            { id: 2, name: "Isla Brown", gender: 2 },
+            { id: 3, name: "Amelia Davies", gender: 2 },
+            { id: 4, name: "Jacob Evans", gender: 1 },
+        ];
+        var target = document.querySelector("#target");
+        var buttonEl = document.querySelector("#addAction");
+        buttonEl.onclick = function (e) {
+            var value = {
+                id: document.getElementById('addUserID').value,
+                name: document.getElementById('addUserText').value,
+                gender: document.getElementById('addUserGender').value
+            };
+            users.push(value);
+            console.log(value) 
+            // đọc dữ liệu của mảng và format sau đó truyền tất cả dữ liệu vào biến render
+            var render = users.map(function (object) {
+                if(object.name != "" && object.id != "") {
+                var genderRender = object.gender == 1 ? "male" : "female";
+                return `<li>${object.id} - ${object.name} - ${genderRender}</li>`;
+                }
+            });
+            target.innerHTML = render.join("");
+        };
+    </script>
+</body>
+</html>

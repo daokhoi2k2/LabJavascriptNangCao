@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài 3</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <input type="text" id="name" placeholder="Nhập tên" />
+    <button id="btn">Enter</button>
+    <ul id="list"></ul>
+    <script>
+      const btnElement = $("#btn")[0];
+      const nameElement = $("#name")[0];
+      const ulElement = $("#list")[0];
+      const arrName = [];
+
+      const sort = (arr) => {
+        arr.sort((a, b) => {
+          if (a > b) {
+            return 1;
+          }
+          if (a < b) {
+            return -1;
+          }
+          return 0;
+        });
+      };
+
+      const renderList = (element, callback) => {
+        $(element).html(callback());
+      };
+
+      $(btnElement).click((e) => {
+        arrName.push(nameElement.value);
+        nameElement.value = "";
+        renderList(ulElement, () => {
+          sort(arrName);
+          return arrName.map((item) => {
+            return `<li>${item}</li>`;
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

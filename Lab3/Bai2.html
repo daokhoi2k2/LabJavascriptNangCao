@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài 2</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <p>
+      Subject Name
+      <input type="text" name="" id="subject_name" />
+    </p>
+    <p>
+      Point
+      <input type="text" id="point" />
+    </p>
+    <p>
+      <button onClick="handleAdd()">Add</button>
+    </p>
+    <p id="student_name"></p>
+    <p id="student_age"></p>
+    <p id="student_address"></p>
+    <p>Subjects:</p>
+    <ul id="subjects"></ul>
+
+    <script>
+      const student = {
+        name: "Nguyen Van A",
+        age: 20,
+        address: "Ha Noi",
+        subjects: [
+          {
+            name: "Javascript",
+            point: 8,
+          },
+        ],
+
+        addSubject: function (item) {
+          this.subjects.push(item);
+        },
+        render: function () {
+          const s_nameElement = $("#student_name")[0];
+          const s_ageElement = $("#student_age")[0];
+          const s_addressElement = $("#student_address")[0];
+          const s_subjects = $("#subjects")[0];
+
+          s_nameElement.innerHTML = this.name;
+          s_ageElement.innerHTML = this.age;
+          s_addressElement.innerHTML = this.address;
+          s_subjects.innerHTML = this.subjects
+            .map((item) => {
+              return `<li>${item.name} - ${item.point}</li>`;
+            })
+            .join("");
+        },
+      };
+
+      const handleAdd = () => {
+        const s_name = $("#subject_name")[0];
+        const s_point = $("#point")[0];
+        student.addSubject({
+          name: s_name.value,
+          point: s_point.value,
+        });
+
+        s_name.value = "";
+        s_point.value = "";
+        s_name.focus();
+
+        student.render();
+      };
+
+      student.render();
+    </script>
+  </body>
+</html>

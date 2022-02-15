@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 6 - Bài 5</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+    <div id="result">
+
+    </div>
+    <script>
+        axios("https://reqres.in/api/users?page=1&per_page=10")
+            .then((res) => {
+                console.log(res)
+                return res.data;
+            })
+            .then((users) => {
+                const resultElement = document.getElementById("result");
+                const htmlResult = users.data.map((user) => {
+                    return `<li>${user.id} - ${user.first_name} ${user.last_name}</li>`
+                }).join("");
+                
+                resultElement.innerHTML = htmlResult;
+            })
+    </script>
+</body>
+</html>

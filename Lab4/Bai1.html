@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài 1</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <input type="text" id="weight" placeholder="Cân nặng (kg)" />
+    <input type="text" id="height" placeholder="Chiều cao (cm)" />
+    <button id="btn">Enter</button>
+    <div id="ibm"></div>
+    <script>
+      const weightElement = $("#weight")[0];
+      const heightElement = $("#height")[0];
+      const btnElement = $("#btn")[0];
+      const ibmElement = $("#ibm")[0];
+
+      console.log(btnElement);
+      btnElement.onclick = () => {
+        ibmElement.innerHTML = weightElement.value / heightElement.value
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 1 - Bài 2.1</title>
+    <style>
+        #target{
+            width: 60px;
+            height: 60px;
+            background: #33691E;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="txtInput" value="33691E">
+    <h3>Input text</h3>
+    <script>
+          var h3Text = document.querySelector("h3");
+          txtInput.onkeyup = function(e) {
+              h3Text.innerText = e.target.value;
+          }
+    </script>
+</body>
+</html>

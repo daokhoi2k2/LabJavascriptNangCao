@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <title>Bài 2</title>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"
+  ></script>
+  </head>
+  <body>
+    <div>
+      <p>
+        String <input type="text" id="string" />
+      </p>
+      <p>
+        Number <input  type="text" id="number" />
+      </p>
+      <button onClick={handleConvert()}>Convert</button>
+      <h1 id="result"></h1>
+    </div>
+    <script>
+      handleConvert = () => {
+        const stringValue = $("#string")[0].value;
+        const numberValue = $("#number")[0].value;
+        const resultElement = $("#result")[0];
+        const stringNeedReplace = stringValue.slice(numberValue);
+
+        const pattern = `${stringNeedReplace}`;
+        const re = new RegExp(pattern);
+
+        resultElement.innerHTML = stringValue.replace(re, (word, index) => {
+          let dots = "";
+          for(let i = 0; i < word.length; i++) {
+            dots += ".";
+          }
+
+          return dots;
+        })
+      }
+    </script>
+  </body>
+</html>
